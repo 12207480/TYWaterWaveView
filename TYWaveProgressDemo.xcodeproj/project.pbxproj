@@ -14,6 +14,8 @@
 		B0AF07941ADEA20F00173B23 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B0AF07931ADEA20F00173B23 /* Images.xcassets */; };
 		B0AF07971ADEA20F00173B23 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = B0AF07951ADEA20F00173B23 /* LaunchScreen.xib */; };
 		B0AF07A31ADEA20F00173B23 /* TYWaveProgressDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AF07A21ADEA20F00173B23 /* TYWaveProgressDemoTests.m */; };
+		B0AF07B11ADEA23F00173B23 /* TYWaterWaveView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AF07AE1ADEA23F00173B23 /* TYWaterWaveView.m */; };
+		B0AF07B21ADEA23F00173B23 /* TYWaveProgressView.m in Sources */ = {isa = PBXBuildFile; fileRef = B0AF07B01ADEA23F00173B23 /* TYWaveProgressView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +42,10 @@
 		B0AF079C1ADEA20F00173B23 /* TYWaveProgressDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TYWaveProgressDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0AF07A11ADEA20F00173B23 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B0AF07A21ADEA20F00173B23 /* TYWaveProgressDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TYWaveProgressDemoTests.m; sourceTree = "<group>"; };
+		B0AF07AD1ADEA23F00173B23 /* TYWaterWaveView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYWaterWaveView.h; sourceTree = "<group>"; };
+		B0AF07AE1ADEA23F00173B23 /* TYWaterWaveView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYWaterWaveView.m; sourceTree = "<group>"; };
+		B0AF07AF1ADEA23F00173B23 /* TYWaveProgressView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TYWaveProgressView.h; sourceTree = "<group>"; };
+		B0AF07B01ADEA23F00173B23 /* TYWaveProgressView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TYWaveProgressView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +87,7 @@
 		B0AF07851ADEA20F00173B23 /* TYWaveProgressDemo */ = {
 			isa = PBXGroup;
 			children = (
+				B0AF07AC1ADEA23F00173B23 /* TYWaveProgressView */,
 				B0AF078A1ADEA20F00173B23 /* AppDelegate.h */,
 				B0AF078B1ADEA20F00173B23 /* AppDelegate.m */,
 				B0AF078D1ADEA20F00173B23 /* ViewController.h */,
@@ -117,6 +124,17 @@
 				B0AF07A11ADEA20F00173B23 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0AF07AC1ADEA23F00173B23 /* TYWaveProgressView */ = {
+			isa = PBXGroup;
+			children = (
+				B0AF07AD1ADEA23F00173B23 /* TYWaterWaveView.h */,
+				B0AF07AE1ADEA23F00173B23 /* TYWaterWaveView.m */,
+				B0AF07AF1ADEA23F00173B23 /* TYWaveProgressView.h */,
+				B0AF07B01ADEA23F00173B23 /* TYWaveProgressView.m */,
+			);
+			path = TYWaveProgressView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -220,8 +238,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B0AF078F1ADEA20F00173B23 /* ViewController.m in Sources */,
+				B0AF07B11ADEA23F00173B23 /* TYWaterWaveView.m in Sources */,
 				B0AF078C1ADEA20F00173B23 /* AppDelegate.m in Sources */,
 				B0AF07891ADEA20F00173B23 /* main.m in Sources */,
+				B0AF07B21ADEA23F00173B23 /* TYWaveProgressView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -416,6 +436,7 @@
 				B0AF07A81ADEA20F00173B23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B0AF07A91ADEA20F00173B23 /* Build configuration list for PBXNativeTarget "TYWaveProgressDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -424,6 +445,7 @@
 				B0AF07AB1ADEA20F00173B23 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
