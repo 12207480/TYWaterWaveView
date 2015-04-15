@@ -163,16 +163,16 @@
     currentWavePointY -= waveGrowth;
     offsetX += waveSpeed;
     
-    [self getCurrentWavePath];
+    [self setCurrentFirstWaveLayerPath];
 
-    [self getCurrentWavePath1];
+    [self setCurrentSecondWaveLayerPath];
 
     if (currentWavePointY < 2 * waterWaveHeight *(1-_percent)) {
         [self stop];
     }
 }
 
--(void)getCurrentWavePath{
+-(void)setCurrentFirstWaveLayerPath{
 
     CGMutablePathRef path = CGPathCreateMutable();
     CGFloat y = currentWavePointY;
@@ -191,7 +191,7 @@
     CGPathRelease(path);
 }
 
--(void)getCurrentWavePath1{
+-(void)setCurrentSecondWaveLayerPath{
 
     CGMutablePathRef path = CGPathCreateMutable();
     CGFloat y = currentWavePointY;
