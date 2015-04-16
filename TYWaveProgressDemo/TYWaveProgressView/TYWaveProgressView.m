@@ -87,7 +87,7 @@
     if (_numberLabel.text) {
         CGFloat percent = [_numberLabel.text integerValue]/100.0;
         _waterWaveView.percent = percent;
-        [_waterWaveView wave];
+        [_waterWaveView startWave];
     }
 }
 

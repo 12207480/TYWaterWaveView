@@ -1,5 +1,5 @@
 //
-//  KYWaterWaveView.m
+//  TYWaterWaveView.m
 //  TYWaveProgressDemo
 //
 //  Created by tanyang on 15/4/14.
@@ -109,7 +109,7 @@
     [self resetProperty];
 }
 
--(void) wave{
+-(void) startWave{
     
     [self resetProperty];
     
@@ -125,9 +125,10 @@
     }
     
     if (_waveDisplaylink) {
-        [self stop];
+        [self stopWave];
     }
     _waveDisplaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(getCurrentWave:)];
+    //_waveDisplaylink.frameInterval = 1.5;
     [_waveDisplaylink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     
 }
@@ -135,6 +136,11 @@
 - (void)reset
 {
     [self resetProperty];
+    
+    [_firstWaveLayer removeFromSuperlayer];
+    _firstWaveLayer = nil;
+    [_secondWaveLayer removeFromSuperlayer];
+    _secondWaveLayer = nil;
 }
 
 -(void)animateWave
@@ -168,7 +174,7 @@
     [self setCurrentSecondWaveLayerPath];
 
     if (currentWavePointY < 2 * waterWaveHeight *(1-_percent)) {
-        [self stop];
+        [self stopWave];
     }
 }
 
@@ -210,7 +216,7 @@
     CGPathRelease(path);
 }
 
--(void) stop{
+-(void) stopWave{
     [_waveDisplaylink invalidate];
     _waveDisplaylink = nil;
 }
