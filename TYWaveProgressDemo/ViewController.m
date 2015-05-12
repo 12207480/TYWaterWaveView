@@ -64,6 +64,10 @@
     [_waveProgressView2 startWave];
 
 }
+- (IBAction)reStartWave:(id)sender {
+    [_waveProgressView1 startWave];
+    [_waveProgressView2 startWave];
+}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
