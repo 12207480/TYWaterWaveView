@@ -25,7 +25,6 @@
     CGFloat waterWaveHeight;
     CGFloat waterWaveWidth;
     CGFloat offsetX;
-    
     CGFloat currentWavePointY; // 当前波浪上市高度Y（高度从大到小 坐标系向下增长）
     
     float variable;     //可变参数 更加真实 模拟波纹
@@ -108,7 +107,7 @@
     [self resetProperty];
 }
 
--(void) startWave{
+-(void)startWave{
     
     [self resetProperty];
     

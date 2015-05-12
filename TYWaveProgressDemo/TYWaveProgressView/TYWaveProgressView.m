@@ -85,9 +85,8 @@
 - (void)startWave
 {
     if (_numberLabel.text) {
-        CGFloat percent = [_numberLabel.text integerValue]/100.0;
-        if (percent > 0) {
-            _waterWaveView.percent = percent;
+        if (_percent > 0) {
+            _waterWaveView.percent = _percent;
             [_waterWaveView startWave];
         }else{
             [self resetWave];
@@ -127,7 +126,7 @@
         _unitLabel.frame = CGRectZero;
     }
     
-    _explainLabel.frame = CGRectMake((viewWidth - explainLabelWidth)/2, CGRectGetMaxY(_numberLabel.frame)-numberLabelHeight/13, explainLabelWidth, explainLabelHeight);
+    _explainLabel.frame = CGRectMake((viewWidth - explainLabelWidth)/2, CGRectGetMaxY(_numberLabel.frame)-numberLabelHeight/30, explainLabelWidth, explainLabelHeight);
 }
 
 @end

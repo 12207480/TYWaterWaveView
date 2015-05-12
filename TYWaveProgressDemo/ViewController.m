@@ -10,7 +10,8 @@
 #import "TYWaveProgressView.h"
 
 @interface ViewController ()
-@property (nonatomic, weak) TYWaveProgressView *waveProgressView;
+@property (nonatomic, weak) TYWaveProgressView *waveProgressView1;
+@property (nonatomic, weak) TYWaveProgressView *waveProgressView2;
 @end
 
 @implementation ViewController
@@ -19,8 +20,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     
-    TYWaveProgressView *waveProgressView = [[TYWaveProgressView alloc]initWithFrame:CGRectMake(0, 0, 180, 180)];
-    waveProgressView.center = self.view.center;
+    [self addWaveProgressView1];
+
+    [self addWaveProgressView2];
+}
+
+- (void)addWaveProgressView1
+{
+    TYWaveProgressView *waveProgressView = [[TYWaveProgressView alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame) - 180)/2, 44, 180, 180)];
     waveProgressView.waveViewMargin = UIEdgeInsetsMake(15, 15, 20, 20);
     waveProgressView.backgroundImageView.image = [UIImage imageNamed:@"bg_tk_003"];
     waveProgressView.numberLabel.text = @"80";
@@ -29,25 +36,33 @@
     waveProgressView.unitLabel.text = @"%";
     waveProgressView.unitLabel.font = [UIFont boldSystemFontOfSize:20];
     waveProgressView.unitLabel.textColor = [UIColor whiteColor];
-    waveProgressView.explainLabel.text = @"正确率";
+    waveProgressView.explainLabel.text = @"电量";
     waveProgressView.explainLabel.font = [UIFont systemFontOfSize:20];
     waveProgressView.explainLabel.textColor = [UIColor whiteColor];
-    [self.view addSubview:waveProgressView];
-    _waveProgressView = waveProgressView;
-    [_waveProgressView startWave];
-
-}
-
-- (IBAction)doAgain:(id)sender {
-    [_waveProgressView startWave];
     
-    //[self performSelector:@selector(deleteWaveView) withObject:nil afterDelay:10];
+    waveProgressView.percent = 0.8;
+    [self.view addSubview:waveProgressView];
+    _waveProgressView1 = waveProgressView;
+    [_waveProgressView1 startWave];
 }
 
-- (void)deleteWaveView
+- (void)addWaveProgressView2
 {
-    [_waveProgressView removeFromSuperview];
-    _waveProgressView = nil;
+    TYWaveProgressView *waveProgressView = [[TYWaveProgressView alloc]initWithFrame:CGRectMake((CGRectGetWidth(self.view.frame) - 180)/2, 300, 180, 180)];
+    waveProgressView.waveViewMargin = UIEdgeInsetsMake(15, 15, 20, 20);
+    waveProgressView.backgroundImageView.image = [UIImage imageNamed:@"bg_tk_003"];
+    waveProgressView.numberLabel.text = @"68";
+    waveProgressView.numberLabel.font = [UIFont boldSystemFontOfSize:70];
+    waveProgressView.numberLabel.textColor = [UIColor whiteColor];
+    waveProgressView.explainLabel.text = @"血糖";
+    waveProgressView.explainLabel.font = [UIFont systemFontOfSize:20];
+    waveProgressView.explainLabel.textColor = [UIColor whiteColor];
+    
+    waveProgressView.percent = 0.68;
+    [self.view addSubview:waveProgressView];
+    _waveProgressView2 = waveProgressView;
+    [_waveProgressView2 startWave];
+
 }
 
 - (void)didReceiveMemoryWarning {
