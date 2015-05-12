@@ -1,5 +1,5 @@
 //
-//  TYWaveProgressView.h
+//  TYWaveProgressDemo.h
 //  TYWaveProgressDemo
 //
 //  Created by tanyang on 15/4/14.

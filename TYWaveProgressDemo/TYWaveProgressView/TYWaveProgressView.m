@@ -1,5 +1,5 @@
 //
-//  TYWaveProgressView.m
+//  TYWaveProgressDemo.m
 //  TYWaveProgressDemo
 //
 //  Created by tanyang on 15/4/14.
@@ -86,8 +86,12 @@
 {
     if (_numberLabel.text) {
         CGFloat percent = [_numberLabel.text integerValue]/100.0;
-        _waterWaveView.percent = percent;
-        [_waterWaveView startWave];
+        if (percent > 0) {
+            _waterWaveView.percent = percent;
+            [_waterWaveView startWave];
+        }else{
+            [self resetWave];
+        }
     }
 }
 
@@ -119,6 +123,8 @@
     
     if (_unitLabel.text.length > 0) {
         _unitLabel.frame = CGRectMake(viewWidth * 0.7, CGRectGetMinY(_numberLabel.frame)*1.2, _unitLabel.font.pointSize*3, _unitLabel.font.pointSize);
+    } else{
+        _unitLabel.frame = CGRectZero;
     }
     
     _explainLabel.frame = CGRectMake((viewWidth - explainLabelWidth)/2, CGRectGetMaxY(_numberLabel.frame)-numberLabelHeight/13, explainLabelWidth, explainLabelHeight);

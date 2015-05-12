@@ -28,9 +28,8 @@
     
     CGFloat currentWavePointY; // 当前波浪上市高度Y（高度从大到小 坐标系向下增长）
     
-    float a;    //可变参数 更加真实 模拟波纹
-    
-    BOOL jia;
+    float variable;     //可变参数 更加真实 模拟波纹
+    BOOL increase;      // 增减变化
 }
 
 -(id)initWithFrame:(CGRect)frame{
@@ -84,8 +83,8 @@
 {
     currentWavePointY = self.frame.size.height;
     
-    a = 1.6;
-    jia = NO;
+    variable = 1.6;
+    increase = NO;
     
     offsetX = 0;
 
@@ -145,22 +144,22 @@
 
 -(void)animateWave
 {
-    if (jia) {
-        a += 0.01;
+    if (increase) {
+        variable += 0.01;
     }else{
-        a -= 0.01;
+        variable -= 0.01;
     }
     
     
-    if (a<=1) {
-        jia = YES;
+    if (variable<=1) {
+        increase = YES;
     }
     
-    if (a>=1.6) {
-        jia = NO;
+    if (variable>=1.6) {
+        increase = NO;
     }
     
-    waveAmplitude = a*5;
+    waveAmplitude = variable*5;
 }
 
 -(void)getCurrentWave:(CADisplayLink *)displayLink{
@@ -184,7 +183,6 @@
     CGFloat y = currentWavePointY;
     CGPathMoveToPoint(path, nil, 0, y);
     for (float x = 0.0f; x <=  waterWaveWidth ; x++) {
-       //y= a * 5 * sin(1.6* x/180*M_PI + 4*b/M_PI ) + _currentLinePointY;
        y = waveAmplitude * sin(waveCycle * x + offsetX) + currentWavePointY;
         CGPathAddLineToPoint(path, nil, x, y);
     }
@@ -203,7 +201,6 @@
     CGFloat y = currentWavePointY;
     CGPathMoveToPoint(path, nil, 0, y);
     for (float x = 0.0f; x <=  waterWaveWidth ; x++) {
-        //y = a * 5 * cos(1.6* x/180*M_PI + 4*b/M_PI ) + _currentLinePointY;
         y = waveAmplitude * cos(waveCycle * x + offsetX) + currentWavePointY;
         CGPathAddLineToPoint(path, nil, x, y);
     }
