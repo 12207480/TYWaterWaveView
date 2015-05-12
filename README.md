@@ -1,2 +1,2 @@
 # TYWaterWaveView
-水波纹圆形进度控件  
+水波纹圆形进度控件 demo
