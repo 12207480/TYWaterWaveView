@@ -1,5 +1,5 @@
 # TYWaterWaveView
-水波纹圆形进度控件 demo
+水波浪圆形进度控件，采用 CAShapeLayer，CADisplayLink 波浪动画，简单，流畅，
 
 ### 截图
 
