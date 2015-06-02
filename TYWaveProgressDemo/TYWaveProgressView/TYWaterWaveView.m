@@ -10,6 +10,7 @@
 @interface TYWaterWaveView ()
 
 @property (nonatomic, strong) CADisplayLink *waveDisplaylink;
+
 @property (nonatomic, strong) CAShapeLayer  *firstWaveLayer;
 @property (nonatomic, strong) CAShapeLayer  *secondWaveLayer;
 
@@ -24,7 +25,7 @@
     
     CGFloat waterWaveHeight;
     CGFloat waterWaveWidth;
-    CGFloat offsetX;
+    CGFloat offsetX;           // 波浪x位移
     CGFloat currentWavePointY; // 当前波浪上市高度Y（高度从大到小 坐标系向下增长）
     
     float variable;     //可变参数 更加真实 模拟波纹
@@ -72,6 +73,7 @@
     waterWaveWidth  = self.frame.size.width;
     _firstWaveColor = [UIColor colorWithRed:223/255.0 green:83/255.0 blue:64/255.0 alpha:1];
     _secondWaveColor = [UIColor colorWithRed:236/255.0f green:90/255.0f blue:66/255.0f alpha:1];
+    
     waveGrowth = 0.85;
     waveSpeed = 0.4/M_PI;
     
@@ -112,11 +114,14 @@
     [self resetProperty];
     
     if (_firstWaveLayer == nil) {
+        // 创建第一个波浪Layer
         _firstWaveLayer = [CAShapeLayer layer];
         _firstWaveLayer.fillColor = _firstWaveColor.CGColor;
         [self.layer addSublayer:_firstWaveLayer];
     }
+    
     if (_secondWaveLayer == nil) {
+        // 创建第二个波浪Layer
         _secondWaveLayer = [CAShapeLayer layer];
         _secondWaveLayer.fillColor = _secondWaveColor.CGColor;
         [self.layer addSublayer:_secondWaveLayer];
@@ -125,14 +130,16 @@
     if (_waveDisplaylink) {
         [self stopWave];
     }
+    
+    // 启动定时调用
     _waveDisplaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(getCurrentWave:)];
-    //_waveDisplaylink.frameInterval = 1.5;
     [_waveDisplaylink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     
 }
 
 - (void)reset
 {
+    [self stopWave];
     [self resetProperty];
     
     [_firstWaveLayer removeFromSuperlayer];
@@ -164,16 +171,18 @@
 -(void)getCurrentWave:(CADisplayLink *)displayLink{
     
     [self animateWave];
-    currentWavePointY -= waveGrowth;
+    
+    if (currentWavePointY > 2 * waterWaveHeight *(1-_percent)) {
+        // 波浪高度未到指定高度 继续上涨
+        currentWavePointY -= waveGrowth;
+    }
+    
+    // 波浪位移
     offsetX += waveSpeed;
     
     [self setCurrentFirstWaveLayerPath];
 
     [self setCurrentSecondWaveLayerPath];
-
-    if (currentWavePointY < 2 * waterWaveHeight *(1-_percent)) {
-        [self stopWave];
-    }
 }
 
 -(void)setCurrentFirstWaveLayerPath{
@@ -182,7 +191,8 @@
     CGFloat y = currentWavePointY;
     CGPathMoveToPoint(path, nil, 0, y);
     for (float x = 0.0f; x <=  waterWaveWidth ; x++) {
-       y = waveAmplitude * sin(waveCycle * x + offsetX) + currentWavePointY;
+        // 正弦波浪公式
+        y = waveAmplitude * sin(waveCycle * x + offsetX) + currentWavePointY;
         CGPathAddLineToPoint(path, nil, x, y);
     }
     
@@ -200,6 +210,7 @@
     CGFloat y = currentWavePointY;
     CGPathMoveToPoint(path, nil, 0, y);
     for (float x = 0.0f; x <=  waterWaveWidth ; x++) {
+        // 余弦波浪公式
         y = waveAmplitude * cos(waveCycle * x + offsetX) + currentWavePointY;
         CGPathAddLineToPoint(path, nil, x, y);
     }
@@ -215,6 +226,10 @@
 -(void) stopWave{
     [_waveDisplaylink invalidate];
     _waveDisplaylink = nil;
+}
+
+- (void)dealloc{
+    [self reset];
 }
 
 @end

@@ -54,7 +54,7 @@
     waveProgressView.numberLabel.text = @"68";
     waveProgressView.numberLabel.font = [UIFont boldSystemFontOfSize:70];
     waveProgressView.numberLabel.textColor = [UIColor whiteColor];
-    waveProgressView.explainLabel.text = @"血糖";
+    waveProgressView.explainLabel.text = @"评分";
     waveProgressView.explainLabel.font = [UIFont systemFontOfSize:20];
     waveProgressView.explainLabel.textColor = [UIColor whiteColor];
     
