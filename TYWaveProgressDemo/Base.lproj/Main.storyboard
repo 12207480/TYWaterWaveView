@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7531" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7520"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <scenes>
         <!--View Controller-->
@@ -16,8 +17,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXf-Am-cOa">
-                                <rect key="frame" x="306" y="518" width="80" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SXf-Am-cOa">
+                                <rect key="frame" x="260" y="534" width="80" height="30"/>
+                                <animations/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="30" id="qFw-OM-Yob"/>
                                     <constraint firstAttribute="width" constant="80" id="xzn-Pd-NTW"/>
@@ -29,16 +31,46 @@
                                     <action selector="reStartWave:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="CP2-Ee-bF6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dG3-zb-UCl">
+                                <rect key="frame" x="137" y="534" width="77" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="KZB-iR-lIo"/>
+                                    <constraint firstAttribute="height" constant="30" id="Yng-hk-5Et"/>
+                                </constraints>
+                                <state key="normal" title="下降"/>
+                                <connections>
+                                    <action selector="decreaseWave:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="iOx-sc-Mve"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fuS-03-WPc">
+                                <rect key="frame" x="386" y="534" width="77" height="30"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="77" id="2pN-dM-8TL"/>
+                                    <constraint firstAttribute="height" constant="30" id="jqk-yK-dTK"/>
+                                </constraints>
+                                <state key="normal" title="上升"/>
+                                <connections>
+                                    <action selector="increaseWave:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="xdg-5n-Io9"/>
+                                </connections>
+                            </button>
                         </subviews>
+                        <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="fuS-03-WPc" firstAttribute="centerY" secondItem="SXf-Am-cOa" secondAttribute="centerY" id="3JH-kE-40r"/>
+                            <constraint firstItem="dG3-zb-UCl" firstAttribute="centerY" secondItem="SXf-Am-cOa" secondAttribute="centerY" id="3Yu-jd-5zn"/>
+                            <constraint firstItem="SXf-Am-cOa" firstAttribute="leading" secondItem="dG3-zb-UCl" secondAttribute="trailing" constant="46" id="Ccb-M9-1a7"/>
                             <constraint firstAttribute="centerX" secondItem="SXf-Am-cOa" secondAttribute="centerX" id="EIg-lv-Cgf"/>
+                            <constraint firstItem="fuS-03-WPc" firstAttribute="leading" secondItem="SXf-Am-cOa" secondAttribute="trailing" constant="46" id="eJe-rS-jdB"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="SXf-Am-cOa" secondAttribute="bottom" constant="36" id="mTh-za-XQj"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="255" y="339"/>
         </scene>
     </scenes>
 </document>

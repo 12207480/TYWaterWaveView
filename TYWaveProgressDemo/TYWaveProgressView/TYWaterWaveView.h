@@ -16,7 +16,9 @@
 @property (nonatomic, assign)   CGFloat percent;            // 百分比
 
 -(void) startWave;
+
 -(void) stopWave;
+
 -(void) reset;
 
 @end

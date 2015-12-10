@@ -40,7 +40,7 @@
     waveProgressView.explainLabel.font = [UIFont systemFontOfSize:20];
     waveProgressView.explainLabel.textColor = [UIColor whiteColor];
     
-    waveProgressView.percent = 0.8;
+    waveProgressView.percent = 0.76;
     [self.view addSubview:waveProgressView];
     _waveProgressView1 = waveProgressView;
     [_waveProgressView1 startWave];
@@ -65,6 +65,23 @@
 
 }
 - (IBAction)reStartWave:(id)sender {
+    
+    [_waveProgressView1 resetWave];
+    [_waveProgressView2 resetWave];
+    [_waveProgressView1 startWave];
+    [_waveProgressView2 startWave];
+}
+
+- (IBAction)increaseWave:(id)sender {
+    _waveProgressView1.percent = 0.9;
+    _waveProgressView2.percent = 0.8;
+    [_waveProgressView1 startWave];
+    [_waveProgressView2 startWave];
+}
+
+- (IBAction)decreaseWave:(id)sender {
+    _waveProgressView1.percent = 0.36;
+    _waveProgressView2.percent = 0.28;
     [_waveProgressView1 startWave];
     [_waveProgressView2 startWave];
 }

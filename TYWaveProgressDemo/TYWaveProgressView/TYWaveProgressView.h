@@ -24,6 +24,8 @@
 
 - (void)startWave;
 
+- (void)stopWave;
+
 - (void)resetWave;
 
 @end

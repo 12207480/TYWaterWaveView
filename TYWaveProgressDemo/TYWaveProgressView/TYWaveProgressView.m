@@ -85,13 +85,18 @@
 - (void)startWave
 {
     if (_numberLabel.text) {
-        if (_percent > 0) {
+        if (_percent >= 0) {
             _waterWaveView.percent = _percent;
             [_waterWaveView startWave];
         }else{
             [self resetWave];
         }
     }
+}
+
+- (void)stopWave
+{
+    [_waterWaveView stopWave];
 }
 
 - (void)resetWave
@@ -127,6 +132,11 @@
     }
     
     _explainLabel.frame = CGRectMake((viewWidth - explainLabelWidth)/2, CGRectGetMaxY(_numberLabel.frame)-numberLabelHeight/30, explainLabelWidth, explainLabelHeight);
+}
+
+- (void)dealloc{
+    // 很重要 否则wave不能释放
+    [self stopWave];
 }
 
 @end

@@ -88,7 +88,6 @@
     increase = NO;
     
     offsetX = 0;
-
 }
 
 - (void)setFirstWaveColor:(UIColor *)firstWaveColor
@@ -105,13 +104,17 @@
 
 - (void)setPercent:(CGFloat)percent
 {
+    if (percent < _percent) {
+        // 下降
+        waveGrowth = waveGrowth > 0 ? -waveGrowth : waveGrowth;
+    }else if (percent > _percent) {
+        // 上升
+        waveGrowth = waveGrowth > 0 ? waveGrowth : -waveGrowth;
+    }
     _percent = percent;
-    [self resetProperty];
 }
 
 -(void)startWave{
-    
-    [self resetProperty];
     
     if (_firstWaveLayer == nil) {
         // 创建第一个波浪Layer
@@ -127,13 +130,11 @@
         [self.layer addSublayer:_secondWaveLayer];
     }
     
-    if (_waveDisplaylink) {
-        [self stopWave];
+    if (_waveDisplaylink == nil) {
+        // 启动定时调用
+        _waveDisplaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(getCurrentWave:)];
+        [_waveDisplaylink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     }
-    
-    // 启动定时调用
-    _waveDisplaylink = [CADisplayLink displayLinkWithTarget:self selector:@selector(getCurrentWave:)];
-    [_waveDisplaylink addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
     
 }
 
@@ -142,10 +143,15 @@
     [self stopWave];
     [self resetProperty];
     
-    [_firstWaveLayer removeFromSuperlayer];
-    _firstWaveLayer = nil;
-    [_secondWaveLayer removeFromSuperlayer];
-    _secondWaveLayer = nil;
+    if (_firstWaveLayer) {
+        [_firstWaveLayer removeFromSuperlayer];
+        _firstWaveLayer = nil;
+    }
+    
+    if (_secondWaveLayer) {
+        [_secondWaveLayer removeFromSuperlayer];
+        _secondWaveLayer = nil;
+    }
 }
 
 -(void)animateWave
@@ -172,8 +178,10 @@
     
     [self animateWave];
     
-    if (currentWavePointY > 2 * waterWaveHeight *(1-_percent)) {
+    if ( waveGrowth > 0 && currentWavePointY > 2 * waterWaveHeight *(1-_percent)) {
         // 波浪高度未到指定高度 继续上涨
+        currentWavePointY -= waveGrowth;
+    }else if (waveGrowth < 0 && currentWavePointY < 2 * waterWaveHeight *(1-_percent)){
         currentWavePointY -= waveGrowth;
     }
     
@@ -223,9 +231,11 @@
     CGPathRelease(path);
 }
 
--(void) stopWave{
-    [_waveDisplaylink invalidate];
-    _waveDisplaylink = nil;
+-(void)stopWave{
+    if (_waveDisplaylink) {
+        [_waveDisplaylink invalidate];
+        _waveDisplaylink = nil;
+    }
 }
 
 - (void)dealloc{
