@@ -162,7 +162,6 @@
         variable -= 0.01;
     }
     
-    
     if (variable<=1) {
         increase = YES;
     }
